@@ -39,9 +39,9 @@ Gradient Descent:
 '''
 
 def gradientDescent(x, y, learnRate, stopThresh, maxIt):
-    #initialize weight to 1, bias to 0 (will be optimized later)
-    w = 1
-    b = 0
+    #initialize weight and biases to random values (to be optimized later)
+    w = np.random.normal(0,1,size=1)
+    b = np.random.normal(0,1,size=1)
 
     # For graphing loss function later on
     weightLoss = np.array([])
@@ -58,9 +58,17 @@ def gradientDescent(x, y, learnRate, stopThresh, maxIt):
         #adjust weights and biases by subtracting the product of their respective gradients by the learning rate
         w -= learnRate * dw
         b -= learnRate * db
-        weightLoss = np.append(weightLoss, abs(dw))
-        biasLoss = np.append(biasLoss, abs(db))
+
         yPred = (w * x) + b  # update predictions using the updated weights and biases
+
+        # use loss function (mean squared error) to compute the loss for weight and bias
+        # the goal is to minimize the weight and bias gradients, so their gradients are compared to 0
+        weightMSE = mse(0,dw)
+        biasMSE = mse(0,db)
+
+        weightLoss = np.append(weightLoss,weightMSE)
+        biasLoss = np.append(biasLoss,biasMSE)
+
         if abs(dw) <= stopThresh and abs(db) <= stopThresh: # stop iterating once gradient of bias and weight less than threshold
             break
     if i == maxIt-1: # if max number of iterations reached, the model failed to reach the minimum threshold. warns the user to adjust learning rate and/or threshold to achieve more accurate result
@@ -72,11 +80,11 @@ def gradientDescent(x, y, learnRate, stopThresh, maxIt):
     return w, b, weightLoss,biasLoss
 
 # Display functions
-def displayLB(x,y,weightLoss,biasLoss):
+def displayLoss(x,y,weightLoss,biasLoss):
     plt.title('Weight and Bias Loss')
     plt.scatter(range(len(weightLoss)), weightLoss, color='red')
     plt.scatter(range(len(weightLoss)), biasLoss, color='blue')
-    plt.ylabel('abs(loss)')
+    plt.ylabel('MSE of weight and bias')
     plt.xlabel('Iteration')
     plt.show()
 
@@ -86,10 +94,10 @@ def displayLineFit(x,y,weight,bias):
     plt.plot(x, weight * x + bias, color='red')
     plt.show()
 
+
 # Example of Display functions
 x = np.array([1.2,2.4,2.5,4.1,3.2,4,6])
 y = np.array([4.2,5.7,6.1,8.5,8.3,9,17])
 weight, bias, weightLoss, biasLoss = gradientDescent(x, y, 0.01, 1e-6, 10000)
 
-displayLB(x,y,weightLoss,biasLoss)
-displayLineFit(x,y,weight,bias)
+displayLoss(x,y,weightLoss,biasLoss)

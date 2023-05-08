@@ -37,10 +37,15 @@ Gradient Descent:
  * Subtracts the product of the learning rate and their individual gradient from their respective weight and biases
  * Some implementation sourced from GeeksForGeeks.com
 '''
+
 def gradientDescent(x, y, learnRate, stopThresh, maxIt):
     #initialize weight to 1, bias to 0 (will be optimized later)
     w = 1
     b = 0
+
+    # For graphing loss function later on
+    weightLoss = np.array([])
+    biasLoss = np.array([])
 
     n = len(x) # number of elements in numpy array
 
@@ -53,19 +58,34 @@ def gradientDescent(x, y, learnRate, stopThresh, maxIt):
         #adjust weights and biases by subtracting the product of their respective gradients by the learning rate
         w -= learnRate * dw
         b -= learnRate * db
-
+        weightLoss = np.append(weightLoss, abs(dw))
+        biasLoss = np.append(biasLoss, abs(db))
         yPred = (w * x) + b  # update predictions using the updated weights and biases
         if abs(dw) <= stopThresh and abs(db) <= stopThresh: # stop iterating once gradient of bias and weight less than threshold
             break
     if i == maxIt-1: # if max number of iterations reached, the model failed to reach the minimum threshold. warns the user to adjust learning rate and/or threshold to achieve more accurate result
         print('Max number of iterations reached. Increase the learning rate and/or threshold for more precise results')
-    return w, b
+    else:
+        print(f'Gradient descent completed in {i+1} of {maxIt} iterations.')
+        print(f'Weight accurate to {dw}')
+        print(f'Bias accurate to {db}')
+    return w, b, weightLoss,biasLoss
 
 
 x = np.array([1.2,2.4,2.5,4.1,3.2,4,6])
 y = np.array([4.2,5.7,6.1,8.5,8.3,9,17])
-weight, bias = gradientDescent(x, y, 0.01, 1e-6, 10000)
 
+weight, bias, weightLoss, biasLoss = gradientDescent(x, y, 0.01, 1e-6, 10000)
+
+plt.title('Line of Best Fit Optimized by Gradient Descent')
 plt.scatter(x,y)
 plt.plot(x,weight * x + bias,color='red')
+
+plt.show()
+
+wl = plt.title('Weight and Bias Loss')
+plt.scatter(range(len(weightLoss)), weightLoss,color='red')
+plt.scatter(range(len(weightLoss)),biasLoss,color='blue')
+plt.ylabel('abs(loss)')
+plt.xlabel('Iteration')
 plt.show()

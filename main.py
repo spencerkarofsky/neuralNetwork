@@ -71,21 +71,25 @@ def gradientDescent(x, y, learnRate, stopThresh, maxIt):
         print(f'Bias accurate to {db}')
     return w, b, weightLoss,biasLoss
 
+# Display functions
+def displayLB(x,y,weightLoss,biasLoss):
+    plt.title('Weight and Bias Loss')
+    plt.scatter(range(len(weightLoss)), weightLoss, color='red')
+    plt.scatter(range(len(weightLoss)), biasLoss, color='blue')
+    plt.ylabel('abs(loss)')
+    plt.xlabel('Iteration')
+    plt.show()
 
+def displayLineFit(x,y,weight,bias):
+    plt.title('Line of Best Fit Optimized by Gradient Descent')
+    plt.scatter(x, y)
+    plt.plot(x, weight * x + bias, color='red')
+    plt.show()
+
+# Example of Display functions
 x = np.array([1.2,2.4,2.5,4.1,3.2,4,6])
 y = np.array([4.2,5.7,6.1,8.5,8.3,9,17])
-
 weight, bias, weightLoss, biasLoss = gradientDescent(x, y, 0.01, 1e-6, 10000)
 
-plt.title('Line of Best Fit Optimized by Gradient Descent')
-plt.scatter(x,y)
-plt.plot(x,weight * x + bias,color='red')
-
-plt.show()
-
-wl = plt.title('Weight and Bias Loss')
-plt.scatter(range(len(weightLoss)), weightLoss,color='red')
-plt.scatter(range(len(weightLoss)),biasLoss,color='blue')
-plt.ylabel('abs(loss)')
-plt.xlabel('Iteration')
-plt.show()
+displayLB(x,y,weightLoss,biasLoss)
+displayLineFit(x,y,weight,bias)

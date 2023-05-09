@@ -4,20 +4,20 @@ Spencer R. Karofsky
 """
 
 # Libraries
-import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-class NeuralNetwork():
+
+class NeuralNetwork:
 
     # Activation Functions
-    def sigmoid(self,x):  # 1/1+e^-x
+    def sigmoid(self, x):  # 1/1+e^-x
         return 1 / (1 + np.exp(-x))
 
-    def relu(self,x):
+    def relu(self, x):
         return np.maximum(0, x)
 
-    def tanh(self,x):
+    def tanh(self, x):
         y = np.tanh(x)
         return y
 
@@ -29,19 +29,19 @@ class NeuralNetwork():
      * Implementation sourced from GeeksForGeeks.com
     '''
 
-    def mse(self,targets, preds):  # mean squared error
+    def mse(self, targets, preds):  # mean squared error
         mse = np.square(np.subtract(preds, targets)).mean()
         return mse
 
     # Optimization Functions
+
     '''
     Gradient Descent:
      * Optimizes weight and bias by finding the minimum cost/loss of the bias and weight gradient
      * Subtracts the product of the learning rate and their individual gradient from their respective weight and biases
      * Some implementation sourced from GeeksForGeeks.com
     '''
-
-    def gradientDescent(self,x, y, w, b, learnRate, stopThresh, maxIt):
+    def gradientDescent(self, x, y, w, b, learnRate, stopThresh, maxIt):
         # calculate loss
         # For graphing loss function later on
         weightLoss = np.array([])
@@ -79,39 +79,41 @@ class NeuralNetwork():
             print(f'Gradient descent completed in {i + 1} of {maxIt} iterations.')
             print(f'Weight accurate to {dw}')
             print(f'Bias accurate to {db}')
-        return w, b, weightLoss,biasLoss
+        return w, b, weightLoss, biasLoss
 
     # Display functions
     def displayLoss(self, weightLoss, biasLoss):
-        fig, (ax1,ax2) = plt.subplots(2,1)
-        ax1.plot(weightLoss, color='red',)
+        fig, (ax1, ax2) = plt.subplots(2, 1)
+        ax1.plot(weightLoss, color='red', )
         ax1.set_ylabel('Weight Loss')
         ax2.plot(biasLoss, color='blue')
         ax2.set_ylabel('Bias Loss')
         ax2.set_xlabel('Epoch')
         plt.show()
 
-    def displayLineFit(self,x, y, weight, bias):
+    def displayLineFit(self, x, y, weight, bias):
         plt.title('Goodness of Fit Optimized by Gradient Descent')
         plt.scatter(x, y)
         plt.plot(x, weight * x + bias, color='red')
         plt.show()
 
 
+'''
 #quadratic relationship between x and y
 x = np.array([1.2, 2.1, 2.9, 4.1, 4.4, 5.4, 6])
 y = np.array([4.2, 4.7, 5.5, 8.3, 8.6, 15, 27])
+'''
 
-x = np.linspace(0,10,50)
-y = np.multiply(x,3) + 4
-yVar = np.random.normal(0,3,size=50)
-y = np.add(y,yVar)
+x = np.linspace(0, 10, 50)
+y = np.multiply(x, 3) + 4
+yVar = np.random.normal(0, 3, size=50)
+y = np.add(y, yVar)
 
 # initialize weight and biases to random values (will be adjusted in optimizer function)
 w = np.random.normal(0, 1, size=1)
 b = np.random.normal(0, 1, size=1)
 
 nn = NeuralNetwork()
-w, b, wL, bL = nn.gradientDescent(x,y,w,b,0.01,1e-6,10000)
+w, b, wL, bL = nn.gradientDescent(x, y, w, b, 0.01, 1e-6, 10000)
 nn.displayLineFit(x, y, w, b)
-nn.displayLoss(wL,bL)
+nn.displayLoss(wL, bL)

@@ -9,14 +9,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class NeuralNetwork():
+
     # Activation Functions
-    def sigmoid(x):  # 1/1+e^-x
+    def sigmoid(self,x):  # 1/1+e^-x
         return 1 / (1 + np.exp(-x))
 
-    def relu(x):
+    def relu(self,x):
         return np.maximum(0, x)
 
-    def tanh(x):
+    def tanh(self,x):
         y = np.tanh(x)
         return y
 
@@ -28,7 +29,7 @@ class NeuralNetwork():
      * Implementation sourced from GeeksForGeeks.com
     '''
 
-    def mse(targets, preds):  # mean squared error
+    def mse(self,targets, preds):  # mean squared error
         mse = np.square(np.subtract(preds, targets)).mean()
         return mse
 
@@ -40,11 +41,11 @@ class NeuralNetwork():
      * Some implementation sourced from GeeksForGeeks.com
     '''
 
-    def gradientDescent(x, y, w, b, learnRate, stopThresh, maxIt):
-
-        '''# For graphing loss function later on
+    def gradientDescent(self,x, y, w, b, learnRate, stopThresh, maxIt):
+        # calculate loss
+        # For graphing loss function later on
         weightLoss = np.array([])
-        biasLoss = np.array([])'''
+        biasLoss = np.array([])
 
         n = len(x)  # number of elements in numpy array
 
@@ -62,11 +63,11 @@ class NeuralNetwork():
 
             # use loss function (mean squared error) to compute the loss for weight and bias
             # the goal is to minimize the weight and bias gradients, so their gradients are compared to 0
-            '''weightMSE = mse(0, dw)
-            biasMSE = mse(0, db)
+            weightMSE = self.mse(0, dw)
+            biasMSE = self.mse(0, db)
 
             weightLoss = np.append(weightLoss, weightMSE)
-            biasLoss = np.append(biasLoss, biasMSE)'''
+            biasLoss = np.append(biasLoss, biasMSE)
 
             if abs(dw) <= stopThresh and abs(
                     db) <= stopThresh:  # stop iterating once gradient of bias and weight less than threshold
@@ -78,35 +79,39 @@ class NeuralNetwork():
             print(f'Gradient descent completed in {i + 1} of {maxIt} iterations.')
             print(f'Weight accurate to {dw}')
             print(f'Bias accurate to {db}')
-        return w, b''', weightLoss, biasLoss'''
+        return w, b, weightLoss,biasLoss
 
     # Display functions
-    def displayLoss(x, y, weightLoss, biasLoss):
-        plt.title('Weight and Bias Loss')
-        plt.scatter(range(len(weightLoss)), weightLoss, color='red')
-        plt.scatter(range(len(weightLoss)), biasLoss, color='blue')
-        plt.ylabel('MSE of weight and bias')
-        plt.xlabel('Iteration')
+    def displayLoss(self, weightLoss, biasLoss):
+        fig, (ax1,ax2) = plt.subplots(2,1)
+        ax1.plot(weightLoss, color='red',)
+        ax1.set_ylabel('Weight Loss')
+        ax2.plot(biasLoss, color='blue')
+        ax2.set_ylabel('Bias Loss')
+        ax2.set_xlabel('Epoch')
         plt.show()
 
-    def displayLineFit(x, y, weight, bias):
-        plt.title('Line of Best Fit Optimized by Gradient Descent')
+    def displayLineFit(self,x, y, weight, bias):
+        plt.title('Goodness of Fit Optimized by Gradient Descent')
         plt.scatter(x, y)
         plt.plot(x, weight * x + bias, color='red')
         plt.show()
 
 
-    def __init__(self):
-        # initialize weight and biases to random values (will be adjusted in optimizer function)
-        w = np.random.normal(0, 1, size=1)
-        b = np.random.normal(0, 1, size=1)
-        
+#quadratic relationship between x and y
+x = np.array([1.2, 2.1, 2.9, 4.1, 4.4, 5.4, 6])
+y = np.array([4.2, 4.7, 5.5, 8.3, 8.6, 15, 27])
 
+x = np.linspace(0,10,50)
+y = np.multiply(x,3) + 4
+yVar = np.random.normal(0,3,size=50)
+y = np.add(y,yVar)
 
-'''     
-# Example of Display functions
-x = np.array([1.2,2.4,2.5,4.1,3.2,4,6])
-y = np.array([4.2,5.7,6.1,8.5,8.3,9,17])
-weight, bias, weightLoss, biasLoss = gradientDescent(x, y, 0.01, 1e-6, 10000)
+# initialize weight and biases to random values (will be adjusted in optimizer function)
+w = np.random.normal(0, 1, size=1)
+b = np.random.normal(0, 1, size=1)
 
-displayLoss(x,y,weightLoss,biasLoss)'''
+nn = NeuralNetwork()
+w, b, wL, bL = nn.gradientDescent(x,y,w,b,0.01,1e-6,10000)
+nn.displayLineFit(x, y, w, b)
+nn.displayLoss(wL,bL)

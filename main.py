@@ -94,7 +94,9 @@ class NeuralNetwork:
     def displayLineFit(self, x, y, weight, bias):
         plt.title('Goodness of Fit Optimized by Gradient Descent')
         plt.scatter(x, y)
-        plt.plot(x, weight * x + bias, color='red')
+        line = str.format(f'y={weight}x + {bias}')
+        plt.plot(x, weight * x + bias, 'r--',label=line)
+
         plt.show()
 
 

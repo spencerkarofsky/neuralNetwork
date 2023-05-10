@@ -1,5 +1,6 @@
 # Simple Neural Network Implementation
 Spencer R. Karofsky
+
 May 2023
 
 I am a passionate and ambitious computer science major, with professional interests in machine learning,

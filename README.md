@@ -12,18 +12,23 @@ I implemented a basic neural network that performs linear regression on a numpy 
 In my main program, I have implemented the following functions:
 
 1) Activation Functions, which take an input and map it to a non-linear output.
+	
 	a) Sigmoid: $ y = = \frac{1}{1+e^(-x)} $
 		* Sigmoid is used primarily for binary classification, where the output is between 0 and 1
+	
 	b) ReLU: y = max(0,x)
 		* ReLU (Rectified Linear Unit) is a commonly used activation function because it is much faster than sigmoid
+	
 	c) Tanh:
 		* Tanh (the hyperbolic tangent) takes in an input and returns a value between -1 and 1.
 
 2) Loss Functions, which calculate the loss between the values the the neural network predicts and the actual values
+	
 	a) Mean Squared Error (MSE): $ \Sigma (x-x_i}^2 $
 		* Mean squared error is a popular and efficient loss function
 
 3) Optimizer Functions, which minimize the loss of the weights and biases in a neural network
+	
 	a) Gradient Descent
 		* Gradient descent works by starting with an initial weight and bias -- commonly picked on a normal distribution
 		* with a mean of 0 and a standard deviation of 1. The gradient of the weight and bias losses is then calculated, and the

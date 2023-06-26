@@ -3,9 +3,6 @@ Spencer R. Karofsky
 
 May 2023
 
-I am a passionate and ambitious computer science major, with professional interests in machine learning,
-neural networks, robotics, autonomous systems, and computer vision.
-
 I have recently been teaching myself neural networks. To gain a solid understanding of the fundamentals, 
 I implemented a basic neural network that performs linear regression on a numpy array.
 

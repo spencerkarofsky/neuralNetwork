@@ -11,6 +11,8 @@ In my main program, I have implemented the following functions:
 1) Activation Functions, which take an input and map it to a non-linear output.
 	
 	a) Sigmoid: $` y = = \frac{1}{1+e^(-x)} `$
+
+
 		* Sigmoid is used primarily for binary classification, where the output is between 0 and 1
 	
 	b) ReLU: y = max(0,x)
@@ -19,7 +21,7 @@ In my main program, I have implemented the following functions:
 	c) Tanh:
 		* Tanh (the hyperbolic tangent) takes in an input and returns a value between -1 and 1.
 
-2) Loss Functions, which calculate the loss between the values the neural network predicts and the actual values
+3) Loss Functions, which calculate the loss between the values the neural network predicts and the actual values
 	
 	a) The Mean Squared Error (MSE) is given by the formula: $`MSE = \{frac{1}{n}}{\sum_{i=1}^{n} (x_i - \hat{x}_i)^2}`$
 		* Mean squared error is a popular and efficient loss function

@@ -31,11 +31,12 @@ In my main program, I have implemented the following functions:
 4) Optimizer Functions, which minimize the loss of the weights and biases in a neural network
 	
 	a) Gradient Descent
-		* Gradient descent works by starting with an initial weight and bias – commonly picked on a normal distribution
-		* with a mean of 0 and a standard deviation of 1. The gradient of the weight and bias losses is then calculated, and the
-		* product of the respective gradients and pre-specified learning rate is subtracted from the weight and bias. This is 
-		* repeated over several iterations (epochs) until the loss is below a pre-specified threshold.
-		* The idea behind gradient descent is finding the minimum of the weight and bias functions with respect to the loss.
+	
+ 	* Gradient descent works by starting with an initial weight and bias – commonly picked on a normal distribution
+	* with a mean of 0 and a standard deviation of 1. The gradient of the weight and bias losses is then calculated, and the
+	* product of the respective gradients and pre-specified learning rate is subtracted from the weight and bias. This is 
+	* repeated over several iterations (epochs) until the loss is below a pre-specified threshold.
+	* The idea behind gradient descent is finding the minimum of the weight and bias functions with respect to the loss.
 
 
 So far this neural network only works with linear regression; as a result, it never makes use of the activation functions. As I gain

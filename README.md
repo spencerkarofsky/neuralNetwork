@@ -19,9 +19,9 @@ In my main program, I have implemented the following functions:
 	c) Tanh:
 		* Tanh (the hyperbolic tangent) takes in an input and returns a value between -1 and 1.
 
-2) Loss Functions, which calculate the loss between the values the the neural network predicts and the actual values
+2) Loss Functions, which calculate the loss between the values the neural network predicts and the actual values
 	
-	a) Mean Squared Error (MSE): $ \Sigma (x-x_i}^2 $
+	a) Mean Squared Error (MSE): \[ MSE = \frac{1}{n} \sum_{i=1}^{n} (x_i - \hat{x}_i)^2 \]
 		* Mean squared error is a popular and efficient loss function
 
 3) Optimizer Functions, which minimize the loss of the weights and biases in a neural network
@@ -37,5 +37,8 @@ In my main program, I have implemented the following functions:
 So far this neural network only works with linear regression; as a result it never makes use of the activation fucntions. As I gain
 a greater understanding of neural networks, I intend on adding quadratic and polynomial regression functionality, which will enable this
 neural network to perform regression and classification on more complex datasets and problems.
+
+<img width="626" alt="image" src="https://github.com/spencerkarofsky/neuralNetwork/assets/105813301/76d707ad-518b-4d37-9d9f-269160f39668">
+
 
 I have really enjoyed working on this project, and I have significantly increased my understanding of neural networks in the process.

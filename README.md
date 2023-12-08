@@ -21,10 +21,7 @@ In my main program, I have implemented the following functions:
 
 2) Loss Functions, which calculate the loss between the values the neural network predicts and the actual values
 	
-	a) Mean Squared Error (MSE):
-$$
-MSE = \frac{1}{n} \sum_{i=1}^{n} (x_i - \hat{x}_i)^2
-$$
+	a) Mean Squared Error (MSE): $' \frac{1}{n} \sum_{i=1}^{n} (x_i - \hat{x}_i)^2 '$
 		* Mean squared error is a popular and efficient loss function
 
 4) Optimizer Functions, which minimize the loss of the weights and biases in a neural network

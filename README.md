@@ -11,13 +11,16 @@ In my main program, I have implemented the following functions:
 1) Activation Functions, which take an input and map it to a non-linear output.
 	
 	a) Sigmoid: $` y = \frac{1}{1+e^(-x)} `$
-		* Sigmoid is used primarily for binary classification, where the output is between 0 and 1
+
+	* Sigmoid is used primarily for binary classification, where the output is between 0 and 1
 	
 	b) ReLU: $` y = max(0,x) `$
-		* ReLU (Rectified Linear Unit) is a commonly used activation function because it is much faster than sigmoid
+
+	* ReLU (Rectified Linear Unit) is a commonly used activation function because it is much faster than sigmoid
 	
 	c) Tanh:
-		* Tanh (the hyperbolic tangent) takes in an input and returns a value between -1 and 1.
+
+	* Tanh (the hyperbolic tangent) takes in an input and returns a value between -1 and 1.
 
 3) Loss Functions, which calculate the loss between the values the neural network predicts and the actual values
 	

@@ -12,7 +12,6 @@ In my main program, I have implemented the following functions:
 	
 	a) Sigmoid: $` y = = \frac{1}{1+e^(-x)} `$
 
-
 		* Sigmoid is used primarily for binary classification, where the output is between 0 and 1
 	
 	b) ReLU: y = max(0,x)

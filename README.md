@@ -4,7 +4,7 @@ Spencer R. Karofsky
 May 2023
 
 I have recently been teaching myself neural networks. To gain a solid understanding of the fundamentals, 
-I implemented a basic neural network that performs linear regression on a numpy array.
+I implemented a basic neural network that performs backpropagation on a NumPy array.
 
 In my main program, I have implemented the following functions:
 
@@ -39,7 +39,15 @@ So far this neural network only works with linear regression; as a result, it ne
 a greater understanding of neural networks, I intend on adding quadratic and polynomial regression functionality, which will enable this
 neural network to perform regression and classification on more complex datasets and problems.
 
+
+Here is an example of the neural network working on randomly generated points on the line $` y = 3x + 4 `$. I added Gaussian noise to the points and used backpropagation to find a goodness-of-fit line to match the data.
+
 <img width="626" alt="image" src="https://github.com/spencerkarofsky/neuralNetwork/assets/105813301/76d707ad-518b-4d37-9d9f-269160f39668">
+
+And here is the loss for the weights and biases:
+
+<img width="628" alt="image" src="https://github.com/spencerkarofsky/neuralNetwork/assets/105813301/9f58caaf-669b-41f7-aaa6-a99c45686297">
+
 
 
 I have really enjoyed working on this project, and I have significantly increased my understanding of neural networks in the process.
